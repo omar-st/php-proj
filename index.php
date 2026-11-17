@@ -40,12 +40,13 @@
                 } return $primes;
             }
 
-            function compare($offset) {
-                return array_diff(prime_siv(100,$offset),prime_siv(100));
+            function compare($len, $offset) {
+                $diff = array_diff(prime_siv($len, $offset),prime_siv($len));
+                return array_filter($diff, fn($value) => $value >= ($offset*2));
             }
 
             echo "<pre><br>&emsp;";
-            print_r(compare(6));
+            print_r(compare(1000, 22));
             echo "</pre>";
 
             /*
